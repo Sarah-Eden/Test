@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name = "viewport" content="width-device-width, initial-scale=1.0">
+		<title>Current Courses</title>
+		<link rel="stylesheet" href="AddNewCourse.css">
+		<script type="module" src="firebase-auth.js"></script>
+	</head>
+
+	<body>
+		<header>
+			<img src="Logo.png" alt="Logo" class="logo">
+			<nav>
+				<ul>
+					<li><a href="myeducation.html">My Education</a></li>
+					<li><a href="documents.html">Documents</a></li>
+					<li><a href="reports.html">Reports</a></li>
+				</ul>
+			</nav>
+			<button class="account-btn">My Account</button>
+		</header>
+
+		<section div class = "course-navigation">
+			<div style="text-decoration-line: underline;"><b>Current Courses</b></div>
+			<div><a href="Completed Courses.html">Completed Courses</a></div>
+			<div><a href="LINK NEEDED">Add A New Course</a></div>
+		</section>
+
+		<section class = "form-container">
+			<form id="newCourseForm" action="" method="post">
+				<div id="createCourseMessage" class="messageDiv" style="display:none;"></div>
+				<input type="text" id="courseName" name="courseName" placeholder="Course Name" required>
+				<input type="text" id="websiteUrl" name="websiteUrl" placeholder="Course URL">
+				<input type="text" id="certificateTrack" name="certificateTrack" placeholder="Certificate Track">
+				<textarea style="resize: none" id="courseDetails" name="courseDetails" placeholder="Course Details / Notes"></textarea>
+				<input type="checkbox"  id="currentlyEnrolled" name="currentlyEnrolled">
+				<label for="currentlyEnrolled"> Currently Enrolled</label>
+				<input class="delete-btn" type="submit" value="Delete Course" id="deleteCourse">
+				<input class="submit-btn" type="submit" value="Save Course Details" id="submitNewCourse"><br>
+				<input type="checkbox" id="completed" name="completed">
+				<label for="completed"> Completed on: </label>
+				<input type="date" id="completedDate" name="completedDate" placeholder="Date">
+				
+			</form>
+		</section>
+		<script src="app.js"></script>
+	</body>
+</html>

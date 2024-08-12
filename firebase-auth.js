@@ -1,10 +1,8 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
-import { getFirestore, setDoc, doc } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, setPersistence, browserSessionPersistence, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+import { getFirestore, setDoc, addDoc, doc } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -19,6 +17,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
+// Display alert message
 function showMessage(message, divId) {
 	var messsageDiv = document.getElementById(divId);
 	messsageDiv.style.display = "block";
@@ -28,8 +27,19 @@ function showMessage(message, divId) {
 		messsageDiv.style.opacity = 0;
 	}, 5000);
 }
-const signUp = document.getElementById('submitSignUp');
 
+// Listen for auth state changes
+const auth = getAuth();
+	onAuthStateChanged(auth, (user) => {
+		if (user !== null) {
+			const userId = user.uid;
+			const userEmail = user.email;
+		}
+
+})
+
+// Create New Account
+const signUp = document.getElementById('submitSignUp');
 signUp.addEventListener('click', (event) => {
 	event.preventDefault();
 	const email = document.getElementById('rEmail').value;
@@ -75,21 +85,74 @@ signIn.addEventListener('click', (event) => {
 	const email = document.getElementById('email').value;
 	const password = document.getElementById('password').value;
 	const auth = getAuth();
-
-	signInWithEmailAndPassword(auth, email, password)
-		.then((userCredential) => {
-			showMessage('login successful', 'signInMessage');
-			const user = userCredential.user;
-			localStorage.setItem('loggedInUserId', user.uid);
-			window.location.href='homepage.html';
+	
+	setPersistence(auth, browserSessionPersistence) 
+		.then(() => {
+			signInWithEmailAndPassword(auth, email, password)
+				.then((userCredential) => {
+					showMessage('login successul', 'signInMessage');
+					const user = userCredential.user;
+					localStorage.setItem('loggedInUserId', user.uid);
+					window.location.href='AddNewCourse.html';
+				})
+				.catch((error) => {
+					const errorCode = error.code;
+					if(errorCode == 'auth/invalid-credential') {
+						showMessage('Incorrect email or password', 'signInMessage');
+					}
+					else {
+						showMessage('Account does not exist', 'signInMessage');
+					}
+				});
 		})
 		.catch((error) => {
 			const errorCode = error.code;
-			if(errorCode ==='auth/invalid-credential') {
-				showMessage('Incorrect email or password', 'signInMessage');
-			}
-			else {
-				showMessage('Accound does not exist', 'signInMessage');
-			}
-		})
+			const errorMessage = error.message;
+		});
 });
+
+// Add a new course - FUNCTION DOES NOT WORK! I am still not sure why. (Eden)
+const addCourse = document.getElementById('newCourseForm');
+document.addEventListener('submit', (event) => {
+	event.preventDefault();
+	const courseName = document.getElementById('courseName').value;
+	const courseURL = document.getElementById('websiteUrl').value;
+	const certificateTrack = document.getElementById('certificateTrack').value;
+	const courseDetails = document.getElementById('courseDetails').value;
+	const currentlyEnrolled = document.getElementById('currentlyEnrolled').checked;
+	const completedCourse = document.getElementById('completed').checked;
+	const dateCompleted = document.getElementById('completedDate').value;
+
+	const auth = getAuth()
+	const user = auth.currentUser;
+	const userEmail = user.email;
+	const db = getFirestore(app);
+
+	const courseData = {
+		email: userEmail,
+		name: courseName,
+		link: courseURL,
+		track: certificateTrack,
+		details: courseDetails,
+		enrolled: currentlyEnrolled,
+		completed: completedCourse,
+		dateCompleted: dateCompleted
+	}
+
+	const docRef = doc(db, "courses", user.uid)
+		setDoc(docRef, courseData)
+			.then(() => {
+				window.location.href = 'homepage.html';
+			})
+			.catch((error) => {
+				const errorCode = error.code;
+				showMessage('Unable to save course data', "createCourseMessage");
+			}) 
+}); 
+
+
+
+
+
+
+
