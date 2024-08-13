@@ -14,8 +14,10 @@ const firebaseConfig = {
 	appId: "1:858961732292:web:5b9168b711e2f893f21f91"
 };
 
-// Initialize Firebase
+// Initialize Firebase, auth, and the firestore database
 const app = initializeApp(firebaseConfig);
+const auth = getAuth();
+const db = getFirestore();
 
 // Display alert message
 function showMessage(message, divId) {
@@ -28,16 +30,6 @@ function showMessage(message, divId) {
 	}, 5000);
 }
 
-// Listen for auth state changes
-const auth = getAuth();
-	onAuthStateChanged(auth, (user) => {
-		if (user !== null) {
-			const userId = user.uid;
-			const userEmail = user.email;
-		}
-
-})
-
 // Create New Account
 const signUp = document.getElementById('submitSignUp');
 signUp.addEventListener('click', (event) => {
@@ -46,9 +38,6 @@ signUp.addEventListener('click', (event) => {
 	const password = document.getElementById('rPassword').value;
 	const firstName = document.getElementById('fName').value;
 	const lastName = document.getElementById('lName').value;
-
-	const auth = getAuth();
-	const db = getFirestore();
 
 	createUserWithEmailAndPassword(auth, email, password)
 		.then((userCredential) => {
@@ -84,15 +73,14 @@ signIn.addEventListener('click', (event) => {
 	event.preventDefault();
 	const email = document.getElementById('email').value;
 	const password = document.getElementById('password').value;
-	const auth = getAuth();
 	
 	setPersistence(auth, browserSessionPersistence) 
 		.then(() => {
 			signInWithEmailAndPassword(auth, email, password)
 				.then((userCredential) => {
-					showMessage('login successul', 'signInMessage');
+					showMessage('login successful', 'signInMessage');
 					const user = userCredential.user;
-					localStorage.setItem('loggedInUserId', user.uid);
+					localStorage.setItem('loggedInUserId', user.uid);  // tracks user log in state
 					window.location.href='AddNewCourse.html';
 				})
 				.catch((error) => {
@@ -108,6 +96,7 @@ signIn.addEventListener('click', (event) => {
 		.catch((error) => {
 			const errorCode = error.code;
 			const errorMessage = error.message;
+			showMessage('Unable to set persistence', 'signInMessage');
 		});
 });
 
@@ -123,10 +112,8 @@ document.addEventListener('submit', (event) => {
 	const completedCourse = document.getElementById('completed').checked;
 	const dateCompleted = document.getElementById('completedDate').value;
 
-	const auth = getAuth()
 	const user = auth.currentUser;
 	const userEmail = user.email;
-	const db = getFirestore(app);
 
 	const courseData = {
 		email: userEmail,
@@ -137,7 +124,7 @@ document.addEventListener('submit', (event) => {
 		enrolled: currentlyEnrolled,
 		completed: completedCourse,
 		dateCompleted: dateCompleted
-	}
+	};
 
 	const docRef = doc(db, "courses", user.uid)
 		setDoc(docRef, courseData)

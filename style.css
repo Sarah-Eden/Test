@@ -6,7 +6,7 @@
 }
 body{
     background-color: #c9d6ff;
-    background:linear-gradient(to right,#e2e2e2,#c9d6ff);
+    background:linear-gradient(to right,#e2e2e2, #007bff8b);
 }
 .container{
     background:#fff;
@@ -47,7 +47,7 @@ input{
 input:focus{
     background-color: transparent;
     outline:transparent;
-    border-bottom:2px solid hsl(327,90%,28%);
+    border-bottom:2px solid #007BFF;
 }
 input::placeholder{
     color:transparent;
@@ -62,7 +62,7 @@ label{
 }
 input:focus~label,input:not(:placeholder-shown)~label{
     top:-3em;
-    color:hsl(327,90%,28%);
+    color:#007BFF;
     font-size:15px;
 }
 .recover{
@@ -73,7 +73,7 @@ input:focus~label,input:not(:placeholder-shown)~label{
 }
 .recover a{
     text-decoration:none;
-    color:rgb(125,125,235);
+    color:#007BFF;
 }
 .recover a:hover{
     color:blue;
@@ -86,19 +86,20 @@ button{
     outline:none;
     border:none;
     width:100%;
-    background:rgb(125,125,235);
+    background: #007BFF;
     color:white;
     cursor:pointer;
     transition:0.9s;
 }
 button:hover{
-    background:#07001f;
+    background:#0056b3;
 }
 .or{
     font-size:1.1rem;
     margin-top:0.5rem;
     text-align:center;
 }
+/*
 .icons{
     text-align:center;
 }
@@ -116,7 +117,8 @@ button:hover{
     background:#07001f;
     font-size:1.6rem;
     border:2px solid rgb(125,125,235);
-}
+} */
+
 .links{
     display:flex;
     justify-content:space-around;
@@ -125,7 +127,7 @@ button:hover{
     font-weight:bold;
 }
  #signUpButton, #signInButton{
-    color:rgb(125,125,235);
+    color: #007BFF;
     border:none;
     background-color:transparent;
     font-size:1rem;
@@ -133,7 +135,7 @@ button:hover{
 }
 #signUpButton:hover, #signInButton:hover {
     text-decoration:underline;
-    color:blue;
+    color: #0056b3;
 } 
 .messageDiv {
     background-color: #007BFF;

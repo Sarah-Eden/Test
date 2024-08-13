@@ -85,13 +85,13 @@ nav a:hover {
 	cursor: pointer;
 }
 
-.container {
+.form-container {
 	width: 82%;
 	margin-top: 40px;
 	border-radius: 10px;
-	background-color: white;
-	margin-right: auto;
-	margin-left: auto;
+	background-color:white;
+	margin-right:auto;
+	margin-left:auto;
 }
 
 input[type=text] {
@@ -105,7 +105,7 @@ textarea {
 	width: 96%;
 	height: 300px;
 	margin-left: 20px;
-	margin-right: 20px;
+	margin-right: 20px;	
 }
 
 input[type=checkbox] {
@@ -116,13 +116,13 @@ input[type=checkbox] {
 
 .submit-btn {
 	background-color: #007BFF;
-	color: white;
-	border: none;
-	padding: 10px 20px;
-	border-radius: 5px;
-	cursor: pointer;
-	font-size: 1.25rem;
-	margin: 20px;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.25rem;
+	margin:20px;
 	float: right;
 }
 
@@ -139,3 +139,16 @@ input[type=checkbox] {
 	margin-bottom: 20px;
 	float: right;
 }
+
+.messageDiv {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 5px;
+    font-size: 1rem;
+    opacity:0;
+    animation: fadeOut 7s forwards;
+}
+
+
