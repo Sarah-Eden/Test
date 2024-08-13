@@ -70,7 +70,8 @@ submitButton.addEventListener('click', (event) => {
 		details: courseDetails,
 		enrolled: currentlyEnrolled,
 		completed: completed,
-		dateCompleted: completedDate
+		dateCompleted: completedDate,
+		user: loggedInUserId
 	};
 
 	const docRef = doc(collection(db, "courses"));

@@ -100,7 +100,7 @@ signIn.addEventListener('click', (event) => {
 		});
 });
 
-// Add a new course - FUNCTION DOES NOT WORK! I am still not sure why. (Eden)
+/* Add a new course - FUNCTION DOES NOT WORK! I am still not sure why. (Eden)
 const addCourse = document.getElementById('newCourseForm');
 document.addEventListener('submit', (event) => {
 	event.preventDefault();
@@ -135,7 +135,7 @@ document.addEventListener('submit', (event) => {
 				const errorCode = error.code;
 				showMessage('Unable to save course data', "createCourseMessage");
 			}) 
-}); 
+}); */
 
 
 
