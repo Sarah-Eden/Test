@@ -1,70 +1,52 @@
 <!DOCTYPE html>
+
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ScholarHub - Completed Courses</title>
-    <link rel="stylesheet" href="Completedcourses.css">
-</head>
-<body>
-    <header>
-        <img src="HomePageLogocopy.png" alt="Logo" class="logo">
-        <nav>
-            <ul>
-                <li><a href="myeducation.html">My Education</a></li>
-                <li><a href="documents.html">Documents</a></li>
-                <li><a href="reports.html">Reports</a></li>
-            </ul>
-        </nav>
-        <button class="account-btn">My Account</button>
-    </header>
+	<head>
+		<meta charset="UTF-8">
+		<meta name = "viewport" content="width-device-width, initial-scale=1.0">
+		<title>Current Courses</title>
+		<link rel="stylesheet" href="CompletedCourses.css">
+		<script type="module" src="Firebase_CompletedCourses.js"></script>
+	</head>
 
-    <section class="course-navigation">
-        <div><a href="currentcourses.html">Current Courses</a></div>
-        <div><a href="completedcourses.html" id="completed-courses-btn" class="active">Completed Courses</a></div>
-        <div><a href="addcourse.html">Add A New Course</a></div>
-    </section>
+	<body>
+		<header>
+			<img src="Logo.png" alt="Logo" class="logo">
+			<nav>
+				<ul>
+					<li><a href="CurrentCourses.html">My Education</a></li>
+					<li><a href="documents.html">Documents</a></li>
+					<li><a href="reports.html">Reports</a></li>
+				</ul>
+			</nav>
+			<button class="account-btn" id="logout">Logout: <span id="loggedUserFirstName"></span></button>
+		</header>
 
-    <div class="container">
-        <div class="pair-container">
-            <div class="courses-container">
-                <div class="course-details">
-                    <div class="course-description">Course Name</div>
-                    <div class="course-description">Certificate Track</div>
-                    <div class="course-description">Course URL</div>
-                    <div class="course-description">Completion Date</div>
-                </div>
-            </div>
-            <div class="upload-container">
-                <a href="upload1.html" class="cert-upload">View/Upload Certificate</a>
-            </div>
-        </div>
-        <div class="pair-container">
-            <div class="courses-container">
-                <div class="course-details">
-                    <div class="course-description">Course Name</div>
-                    <div class="course-description">Certificate Track</div>
-                    <div class="course-description">Course URL</div>
-                    <div class="course-description">Completion Date</div>
-                </div>
-            </div>
-            <div class="upload-container">
-                <a href="upload2.html" class="cert-upload">View/Upload Certificate</a>
-            </div>
-        </div>
-        <div class="pair-container">
-            <div class="courses-container">
-                <div class="course-details">
-                    <div class="course-description">Course Name</div>
-                    <div class="course-description">Certificate Track</div>
-                    <div class="course-description">Course URL</div>
-                    <div class="course-description">Completion Date</div>
-                </div>
-            </div>
-            <div class="upload-container">
-                <a href="upload3.html" class="cert-upload">View/Upload Certificate</a>
-            </div>
-        </div>
-    </div>
-</body>
+		<section div class = "course-navigation">
+			<div><a href="CurrentCourses.html">Current Courses</a></div>
+			<div style="text-decoration-line: underline;"><b>Completed Courses</b></div>
+			<div><a href="AddNewCourse.html">Add A New Course</a></div>
+		</section>
+
+		<section div class = "view-completed-courses">
+			<table class = "courses-table">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Description</th>
+						<th>Link</th>
+						<th>Certificate Track</th>
+						<th>Date Completed</th>
+					</tr>
+				</thead>
+				<tbody id="completedCoursesTable">
+				</tbody>
+			</table>
+		</section>
+
+		<section div class="options">
+			<button class="edit-btn">Edit</button>
+			<button class="delete-btn">Delete</button>
+		</section>
+	</body>
 </html>

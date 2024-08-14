@@ -50,12 +50,15 @@ querySnapshot.forEach((doc) => {
 	var cell3 = row.insertCell(2);
 	var cell4 = row.insertCell(3);
 	var cell5 = row.insertCell(4);
+	var chkbox = document.createElement('input');
+	chkbox.setAttribute('type', 'checkbox');
+	chkbox.setAttribute('id', courseData.name);
 
 	cell1.innerHTML = courseData.name;
 	cell2.innerHTML = courseData.details;
 	cell3.innerHTML = courseData.website;
 	cell4.innerHTML = courseData.track;
-	cell5.innerHTML = '<input type="checkbox">';
+	cell5.append(chkbox);
 	
 });
 
@@ -70,3 +73,5 @@ logoutButton.addEventListener('click', () => {
 		console.error("Error signing out:", error);
 	})
 })
+
+

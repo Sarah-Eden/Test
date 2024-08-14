@@ -6,7 +6,7 @@
 		<meta name = "viewport" content="width-device-width, initial-scale=1.0">
 		<title>Current Courses</title>
 		<link rel="stylesheet" href="CurrentCourses.css">
-		<script type="module" src="CurrentCourses.js"></script>
+		<script type="module" src="Firebase_CurrentCourses.js"></script>
 	</head>
 
 	<body>
@@ -14,7 +14,7 @@
 			<img src="Logo.png" alt="Logo" class="logo">
 			<nav>
 				<ul>
-					<li><a href="myeducation.html">My Education</a></li>
+					<li><a href="CurrentCourses.html">My Education</a></li>
 					<li><a href="documents.html">Documents</a></li>
 					<li><a href="reports.html">Reports</a></li>
 				</ul>
@@ -24,7 +24,7 @@
 
 		<section div class = "course-navigation">
 			<div style="text-decoration-line: underline;"><b>Current Courses</b></div>
-			<div><a href="Completedcourses.html">Completed Courses</a></div>
+			<div><a href="CompletedCourses.html">Completed Courses</a></div>
 			<div><a href="AddNewCourse.html">Add A New Course</a></div>
 		</section>
 
@@ -45,7 +45,7 @@
 		</section>
 
 		<section div class="options">
-			<button class="complete-btn">Complete</button>
+			<button class="complete-btn" id="markComplete">Complete</button>
 			<button class="edit-btn">Edit</button>
 			<button class="delete-btn">Delete</button>
 		</section>
