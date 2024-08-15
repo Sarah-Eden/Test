@@ -45,18 +45,39 @@ const documentIds = [];
 // Generate list of completed courses
 const loggedInUserId = localStorage.getItem('loggedInUserId');
 var selectCourse = document.getElementById("course-name");
+var table = document.getElementById("documents-table-body");
 const q = query(collection(db, "courses"), where("completed", "==", true), where("user", "==", loggedInUserId));
 const querySnapshot = await getDocs(q);
 querySnapshot.forEach((doc) => {
 	let courseData = doc.data();
-	var option = document.createElement("option");
-	option.text = courseData.name;
-	selectCourse.add(option);
-	courseNames.push(courseData.name);
-	documentIds.push(doc.id);
-	console.log(courseNames);
-	console.log(documentIds);
+	let fileLocation = courseData.uploadReference;
+	if(courseData.fileComplete == false) {
+		var option = document.createElement("option");
+		option.text = courseData.name;
+		selectCourse.add(option);
+		courseNames.push(courseData.name);
+		documentIds.push(doc.id);
+		console.log(courseNames);
+		console.log(documentIds);
+	}
+	else {
+		var row = table.insertRow(0);
+		var cell1 = row.insertCell(0);
+		var cell2 = row.insertCell(1);
+		var cell3 = row.insertCell(2);
+		var chkbox = document.createElement('input');
+		chkbox.setAttribute('type', 'checkbox');
+		chkbox.setAttribute('id', courseData.name);
+
+		cell1.innerHTML = courseData.name;
+		cell2.innerHTML = courseData.dateCompleted;
+		cell3.append(chkbox);
+
+	}
+	
 });
+
+
 
 // Display file name on page when user selects file for upload.
 document.getElementById("file-upload").onchange = function() {
@@ -73,6 +94,7 @@ const uploadCertificate = document.getElementById('submit-file-upload');
 uploadCertificate.addEventListener('click', (event) => {
 	event.preventDefault();
 	const courseName = document.getElementById('course-name').value;
+	const uploadDate = document.getElementById('completion-date').value;
 	const file = document.getElementById('file-upload').files[0];
 	const fileName = file.name;
 
@@ -104,6 +126,8 @@ uploadCertificate.addEventListener('click', (event) => {
 
 	const courseRef = doc(db, "courses", docId);
 	updateDoc(courseRef, {
-		uploadReference: fileName
+		uploadReference: fileName,
+		uploadDate: uploadDate,
+		fileComplete: true
 	});
 });
