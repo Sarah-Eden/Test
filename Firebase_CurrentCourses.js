@@ -38,12 +38,16 @@ onAuthStateChanged(auth, (user) => {
 
 const loggedInUserId = localStorage.getItem('loggedInUserId');
 var table = document.getElementById("currentCoursesTable");
+let courseNames = [];
+let documentIds = [];
 
 const q = query(collection(db, "courses"), where("enrolled", "==", true), where("user", "==", loggedInUserId));
 const querySnapshot = await getDocs(q);
 querySnapshot.forEach((doc) => {
 	console.log(doc.id, " => ", doc.data());
 	let courseData = doc.data();
+	courseNames.push(courseData.name);
+	documentIds.push(doc.id);
 	var row = table.insertRow(0);
 	var cell1 = row.insertCell(0);
 	var cell2 = row.insertCell(1);

@@ -1,0 +1,135 @@
+body {
+	font-family: Arial, sans-serif;
+	background-color: #f0f0f0;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+}
+
+header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: white;
+	padding: 10px 20px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+button {
+	border: none;
+	border-radius: 5px;
+	padding: 10px 20px;
+	cursor: pointer;
+	font-size: 1rem;
+}
+
+.logo {
+	height: 100px;
+	margin: 10px;
+}
+
+.login-btn {
+	background-color: #9d9e9f;
+	color: white;
+	margin-right: 10px;
+	font-size: 1.5rem;
+}
+
+.login-btn:hover {
+	background-color: #7e7f80;
+}
+
+.register-btn {
+	background-color: #007BFF;
+	color: white;
+	font-size: 1.5rem;
+}
+
+.register-btn:hover {
+	background-color: #0056b3;
+}
+
+.tryit-btn {
+	background-color: #007BFF;
+	color: white;
+	font-size: 1.35vw;
+	margin-top: 20px;
+	align-self: center;
+}
+
+.feature-container1 {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #3f3f3f;
+	height: 350px;
+	margin-top: 40px;
+	align-content: center;
+}
+
+.feature-textbox1 {
+	width: 30%;
+	background-color: #6a6a6a;
+	color: white;
+	font-size: 2rem;
+	line-height: 1.5;
+	margin-right: 5%;
+	height: 100%;
+	padding-left: 6vw;
+	padding-right: 3vw;
+	text-wrap: wrap;
+}
+
+.feature-image {
+	width: 65%;
+	padding-left: 1vw;
+}
+
+.feature-container2 {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #bcbbbb;
+	height: 500px;
+	margin-top: 60px;
+	align-content: center;
+}
+
+.feature-text-heading {
+	color: #007BFF;
+	font-size: max(2rem, 32px);
+	font-weight: bold;
+	margin-top: 20px;
+}
+
+.feature-textbox2 {
+	width: 40%;
+	color: white;
+	font-size: 1.5rem;
+	line-height: 1.5;
+	margin-right: 5%;
+	padding-top: 1vw;
+	padding-left: 6vw;
+}
+
+.banner {
+	display: flex;
+	flex-direction: row;
+	background-color: #007BFF;
+	opacity: 0.8;
+	border-top: solid 2px #02468f;
+	border-bottom: solid 2px #02468f;
+	align-items: center;
+	height: 100px;
+	margin-top: 80px;
+}
+
+.banner-text {
+	color: white;
+	width: 70%;
+	font-size: 2.5vw;
+	padding-left: 100px;
+}
+
+
+

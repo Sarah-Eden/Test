@@ -1,7 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
 import { getFirestore, collection, query, where, getDocs, getDoc, doc, updateDoc } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
-import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-storage.js";
+import { getStorage, ref, uploadBytesResumable, getDownloadURL, deleteObject } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-storage.js";
 
 const firebaseConfig = {
 	apiKey: "AIzaSyDF7dufa5a2c5CEwWpKu4Pv3522puajXfM",
@@ -69,14 +69,23 @@ querySnapshot.forEach((doc) => {
 		chkbox.setAttribute('type', 'checkbox');
 		chkbox.setAttribute('id', courseData.name);
 
+		let downloadButton = document.createElement('button');
 		cell1.innerHTML = courseData.name;
 		cell2.innerHTML = courseData.dateCompleted;
-		cell3.append(chkbox);
 
-	}
-	
+		getDownloadURL(ref(storage, courseData.uploadReference))
+		.then((downloadLink) => {
+			let string1 = "window.location.href='";
+			let downloadFunction = string1.concat(downloadLink, ";'");
+			
+			downloadButton.innerText = 'Download';
+			downloadButton.className = 'download-btn';
+			downloadButton.setAttribute('onClick', downloadFunction);
+			cell3.appendChild(downloadButton);
+		})
+			
+	}	
 });
-
 
 
 // Display file name on page when user selects file for upload.
@@ -131,3 +140,4 @@ uploadCertificate.addEventListener('click', (event) => {
 		fileComplete: true
 	});
 });
+
