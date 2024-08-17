@@ -141,3 +141,15 @@ uploadCertificate.addEventListener('click', (event) => {
 	});
 });
 
+const logoutButton = document.getElementById("logout");
+logoutButton.addEventListener('click', () => {
+	localStorage.removeItem('loggedInUserId');
+	signOut(auth)
+	.then(() => {
+		window.location.href="index.html";
+	})
+	.catch((error) => {
+		console.error("Error signing out:", error);
+	})
+})
+
