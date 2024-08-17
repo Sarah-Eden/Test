@@ -51,9 +51,12 @@ querySnapshot.forEach((doc) => {
 	var cell4 = row.insertCell(3);
 	var cell5 = row.insertCell(4);
 
+	let linkString = "<a href='";
+	let courseLink = linkString.concat(courseData.website, "'>", courseData.website, "</a>");
+
 	cell1.innerHTML = courseData.name;
 	cell2.innerHTML = courseData.details;
-	cell3.innerHTML = courseData.website;
+	cell3.innerHTML = courseLink;
 	cell4.innerHTML = courseData.track;
 	cell5.innerHTML = courseData.dateCompleted;
 	
